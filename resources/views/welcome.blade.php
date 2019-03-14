@@ -42,7 +42,7 @@
       <tr>
         <td>{{++$sl}}</td>
         <td>{{$task->name}}</td>
-        <td>{{ str_limit($task->description, $limit = 50, $end = '...') }}</td>
+        <td>{{ str_limit($task->description, $limit = 50, $end = '') }}<a href="/view/{{$task->id}}">....</a></td>
         <td>{{$task->due_date}}</td>
         <td>{{-- {{$task->created_at}} --}}{{date('d-m-Y h:i a', strtotime($task->created_at))}}</td>
         @if (Auth::user())

@@ -7,7 +7,7 @@
             @include('partials._messages')
             <div class="panel panel-default">
 
-                <div class="panel-heading">Update Task</div>
+                <div class="panel-heading">View Task</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -16,29 +16,31 @@
                         </div>
                     @endif
 
-                    {{ Form::open(['route' => ['task.update',$task->id],'method'=> 'POST'])  }}
+                    {{ Form::open()  }}
 
 {{ Form::label('name','Task Name', ['class' => 'control-label'])}}
-{{ Form::text('name',$task->name, ['class' => 'form-control form-control-lg','Placeholder' =>'Name of The Task'])}}
+{{ Form::text('name',$task->name, ['class' => 'form-control form-control-lg','readonly','Placeholder' =>'Name of The Task'])}}
 
 {{ Form::label('description','Description', ['class' => 'control-label'])}}
-{{ Form::textarea('description',$task->description, ['class' => 'form-control','Placeholder' =>'Task Description'])}}
+{{ Form::textarea('description',$task->description, ['class' => 'form-control','readonly','Placeholder' =>'Task Description'])}}
 
 {{ Form::label('due_date','Due Date', ['class' => 'control-label'])}}
-{{ Form::date('due_date',$task->due_date,['class' => 'form-control'])}}
+{{ Form::date('due_date',$task->due_date,['class' => 'form-control','readonly'])}}
 {{Form::hidden('_method','PUT')}}
 
-    <div class="row justify-content-center mt-3">
+    
 
-        <div class="col-sm-6">
+{{  Form::close()  }}
+
+<div class="row justify-content-center mt-4">
+
+        <div class="col-sm-2">
             
-            <button class="btn btn-block btn-success" type="Submit">Submit</button>
+          <a href="/"><button class="btn btn-block btn-success" >Go Back</button></a>
 
         </div>
 
     </div>
-
-{{  Form::close()  }}
                     {{--  @component('components.EditForm')
                      @endcomponent --}}
                 </div>
