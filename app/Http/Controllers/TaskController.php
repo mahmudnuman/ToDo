@@ -78,7 +78,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task=Task::find($id);
+
+        return view('edit')->with('task',$task);
     }
 
     /**
@@ -90,7 +92,23 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+
+            'name' =>'required|string|max:255|min:3',
+            'description' =>'required|string|max:10000|min:10',
+            'due_date' =>'required|date',
+        ]);
+
+        $task = Task::find($id);
+
+        $task->name=$request->name;
+        $task->description=$request->description;
+        $task->due_date=$request->due_date;
+        $task->save();
+
+        Session::flash('success','Task Updated Successfully');
+
+        return redirect('/');
     }
 
     public function done( $id)

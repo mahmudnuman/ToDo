@@ -18,5 +18,6 @@ Route::Resource('task','TaskController');
 Route::get('/','TaskController@index');
 Route::get('/done/{id}','TaskController@done');
 Route::get('/destroy/{id}','TaskController@destroy');
+Route::get('/edit/{id}','TaskController@edit');
 
 Route::get('/home', 'HomeController@index')->name('home');
