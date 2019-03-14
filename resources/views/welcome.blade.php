@@ -5,6 +5,9 @@
 <div class="container">
 	<div class="col-md-13 col-md">
 
+		
+
+
 				<h4 style="text-align: center;margin-top: 0px;color: green">Pending Tasks</h4> 
 
             @include('partials._messages')
@@ -27,7 +30,9 @@
         <th>Description</th>
         <th>Task Date</th>
         <th>Created At</th>
+        @if (Auth::user())
         <th>Actions</th>
+        @endif
         
       </tr>
     </thead>
@@ -40,6 +45,7 @@
         <td>{{ str_limit($task->description, $limit = 50, $end = '...') }}</td>
         <td>{{$task->due_date}}</td>
         <td>{{-- {{$task->created_at}} --}}{{date('d-m-Y h:i a', strtotime($task->created_at))}}</td>
+        @if (Auth::user())
         <td>
 
         	<a href="/done/{{$task->id}}" class="btn btn-success" role="button">Done</a>
@@ -49,6 +55,7 @@
         	<a href="/destroy/{{$task->id}}" class="btn btn-danger" role="button">Delete</a>
 
         </td>
+        @endif
       </tr>
       @endforeach
     </tbody>
